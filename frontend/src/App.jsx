@@ -1,17 +1,9 @@
-import { useState } from "react";
-import { PingComponent } from "./components/atoms/PingComponent";
+import CreateProject from "./pages/CreateProject";
 
 const App = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  function toggle() {
-    setIsVisible(!isVisible);
-  }
-
   return (
     <div>
-      <button onClick={toggle}>Toggle</button>
-      {isVisible && <PingComponent />}
+      <CreateProject />
     </div>
   );
 };
