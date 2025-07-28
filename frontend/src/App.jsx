@@ -1,9 +1,9 @@
-import CreateProject from "./pages/CreateProject";
+import { Router } from "./Router";
 
 const App = () => {
   return (
     <div>
-      <CreateProject />
+      <Router />
     </div>
   );
 };
