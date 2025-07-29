@@ -8,7 +8,7 @@ export default function usecreateProject() {
       console.log("Project creation successfully", data);
     },
     onError: () => {
-      console.log("Error while creating project");
+      console.log("Error while creating project",error);
     },
   });
 

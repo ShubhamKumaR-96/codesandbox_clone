@@ -1,32 +1,37 @@
-import { Button, Col, Flex, Row } from "antd";
-import usecreateProject from "../hooks/apis/mutations/usecreateProject";
 import { useNavigate } from "react-router-dom";
+import usecreateProject from "../hooks/apis/mutations/useCreateProject";
+import { Typography, Button, Spin, Space, message } from "antd";
 
-export const CreateProject = () => {
-  const { createProjectMutation } = usecreateProject();
+const { Title } = Typography;
 
-  const navigate = useNavigate();
+const CreateProject = () => {
+  const { createProjectMutation, isPending } = usecreateProject();
+  const navigate=useNavigate()
 
   async function handleCreateProject() {
-    console.log("Going to trigger the api");
+    console.log("Going to trigger the projects");
     try {
-      const response = await createProjectMutation();
-      console.log("Now we should redirect to the editor");
-      navigate(`/project/${response.data}`);
+     const res= await createProjectMutation();
+     console.log("API Response from mutation:", res);
+      message.success("Project created successfully!");
+      navigate(`/project/${res.projectId}`)
     } catch (error) {
-      console.log("Error creating project", error);
+      console.log("Error creating Projects", error);
+      message.error("Failed to create project");
     }
   }
 
   return (
-    <Row>
-      <Col span={24}>
-        <Flex justify="center" align="center">
-          <Button type="primary" onClick={handleCreateProject}>
-            Create Playground
-          </Button>
-        </Flex>
-      </Col>
-    </Row>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "50px" }}>
+      <Space direction="vertical" align="center">
+        <Title level={2}>Create Project</Title>
+        <Button type="primary" onClick={handleCreateProject} loading={isPending}>
+          Create Project
+        </Button>
+        {isPending && <Spin tip="Creating Project..." />}
+      </Space>
+    </div>
   );
 };
+
+export default CreateProject;

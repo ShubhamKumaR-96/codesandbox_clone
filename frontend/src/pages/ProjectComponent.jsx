@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useTreeStructureStore } from "../store/treeStructureStore";
+import TreeStructure from "../components/orgamisms/TreeStructure/TreeStructure";
+import EditorComponent from "../components/molecules/EditorComponent/EditorComponent";
+import EditorButton from "../components/molecules/EditorButton.jsx/EditorButton";
 import { useEffect } from "react";
-import EditorComponent from "../components/orgamisms/EditorComponent/EditorComponent";
-import EditorButton from "../components/molecules/EditorButton/EditorButton";
+
 
 const ProjectComponent = () => {
   const { projectId:projectIdFromURL } = useParams();
-  console.log("ProjectId", projectId)
 
   const {projectId,setProjectId}=useTreeStructureStore()
 
